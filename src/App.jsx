@@ -1,23 +1,16 @@
-import { useState } from "react";
-
-import Loader from "./components/Loader";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import React from "react";
+import Header from "./Components/Header";
 
 function App() {
-
-  const [loading, setLoading] = useState(true);
-
   return (
     <>
-      {loading && <Loader onFinish={() => setLoading(false)} />}
+      <Header />
 
-      {!loading && (
-        <>
-          <Navbar />
-          <Home />
-        </>
-      )}
+      {/* Temporary Scroll Test */}
+      <main style={{ minHeight: "200vh", paddingTop: "40px" }}>
+        <h1>Scroll Test Area</h1>
+        <p>Scroll to see header shrink.</p>
+      </main>
     </>
   );
 }
