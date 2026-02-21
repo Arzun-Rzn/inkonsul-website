@@ -30,12 +30,14 @@ body {
 .sidebar {
   font-family: 'Inter', sans-serif;
   position: fixed;
+  inset: 0 auto 0 0;
+
   top: 0;
   left: 0;
 
   width: 70%;
   max-width: 320px;
-  height: 100vh;
+  height: 100dvh;
 
   background: #ffffff;
 
@@ -102,6 +104,7 @@ body {
   gap: 10px;
 
   overflow-y: auto;
+  min-height: 0;
 }
 
 
@@ -160,158 +163,12 @@ body {
   gap: 12px;
 
   border-top: 1px solid rgba(0,0,0,0.06);
+
+  position: sticky;
+  bottom: 0;
 }
 
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(4px);
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: 0.35s ease;
-
-  z-index: 1500;
-}
-
-.sidebar-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-/* SIDEBAR */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 70%;
-  max-width: 320px;
-  height: 100vh;
-
-  background: #ffffff;
-
-  display: flex;
-  flex-direction: column;
-
-  transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  z-index: 2000;
-
-  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
-}
-
-.sidebar.open {
-  transform: translateX(0);
-}
-
-
-/* HEADER */
-
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 18px 20px;
-
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.sidebar-header h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.sidebar-close {
-  background: none;
-  border: none;
-
-  font-size: 1.4rem;
-  cursor: pointer;
-
-  opacity: 0.7;
-}
-
-.sidebar-close:hover {
-  opacity: 1;
-}
-
-
-/* NAVIGATION */
-
-.sidebar-nav {
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 20px 16px;
-
-  gap: 10px;
-
-  overflow-y: auto;
-}
-
-
-/* LINKS */
-
-.sidebar-nav a {
-  text-decoration: none;
-
-  color: #111;
-
-  font-size: 1rem;
-  font-weight: 500;
-
-  padding: 10px 14px;
-
-  border-radius: 999px;
-
-  transition: 0.25s ease;
-
-  opacity: 0.85;
-}
-
-
-/* Hover */
-
-.sidebar-nav a:hover {
-  background: rgba(99, 102, 241, 0.08);
-  opacity: 1;
-}
-
-
-/* Active (Pill Highlight) */
-
-.sidebar-nav a.active {
-  background: linear-gradient(
-    90deg,
-    rgba(99,102,241,0.15),
-    rgba(6,182,212,0.15)
-  );
-
-  color: #4f46e5;
-
-  opacity: 1;
-}
-
-
-/* ACTION BUTTONS */
-
-.sidebar-actions {
-  padding: 18px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-
-  border-top: 1px solid rgba(0,0,0,0.06);
+.sidebar .login-btn,
+.sidebar .signup-btn {
+  display: block;
 }

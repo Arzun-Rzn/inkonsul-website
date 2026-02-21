@@ -1,3 +1,7 @@
+* {
+  overflow: visible !important;
+}
+
 :root {
   color-scheme: light;
 }
@@ -10,6 +14,7 @@ body {
 }
 
 .header {
+  overflow: visible !important;
   width: 100%;
   height: 110px;
 
@@ -27,6 +32,7 @@ body {
 }
 
 .header-container {
+  overflow: visible !important;
   width: 100%;
   max-width: 1350px;
   margin: 0 auto;
@@ -307,20 +313,23 @@ body {
 @media (max-width: 900px) {
 
   /* Hide desktop stuff */
-  .nav,
-  .login-btn,
-  .signup-btn {
+  .nav{
     display: none;
   }
 
-    .hamburger {
-      display: flex;
-      position: absolute;
-      left: 15px;
-      top: 16px;  
-      z-index: 1200;
-      transition: top 0.3s ease;
-    }
+  .header .login-btn,
+  .header .signup-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    position: absolute;
+    left: 15px;
+    top: 16px;  
+    z-index: 1200;
+    transition: top 0.3s ease;
+  }
 
   /* Header becomes flexible */
   .header {
