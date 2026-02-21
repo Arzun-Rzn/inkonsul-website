@@ -1,99 +1,117 @@
 import React, { useEffect, useState } from "react";
-import "../Styles/Header.css";
-import logo from "../assets/logo.png"; 
-const Header = () => {
-    const [isShrink, setIsShrink] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
+import { NavLink, Link } from "react-router-dom";
 
-    useEffect(() => {
+import "../Styles/Header.css";
+import Sidebar from "./Sidebar";
+import logo from "../assets/logo.png";
+
+const Header = () => {
+  const [isShrink, setIsShrink] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  /* Lock body scroll when sidebar is open */
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+
+  /* Shrink on scroll */
+  useEffect(() => {
     const handleScroll = () => {
-        if (window.scrollY > 60) {
+      if (window.scrollY > 60) {
         setIsShrink(true);
-        } else {
+      } else {
         setIsShrink(false);
-        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-        window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-    }, []);
+  }, []);
+
   return (
-    <header className={`header ${isShrink ? "shrink" : ""}`}>
-      <div className="header-container">
-        
-            {/* Left Section */}
-        <a href="/" className="header-left">
+    <>
+      {/* HEADER */}
+      <header className={`header ${isShrink ? "shrink" : ""}`}>
+        <div className="header-container">
+
+          {/* LEFT (Logo + Brand) */}
+          <Link to="/" className="header-left">
             <img src={logo} alt="Inkonsul Logo" className="logo" />
+
             <div className="brand-wrap">
-                <span className="brand-full">Inkonsul Technologies</span>
-                <span className="brand-short">Inkonsul Technologies</span>
+              <span className="brand-full">Inkonsul Technologies</span>
+              <span className="brand-short">Inkonsul Technologies</span>
             </div>
-        </a>
+          </Link>
 
-        {/* Center Navigation */}
-        <nav className="nav">
-            <a href="#">Company</a>
-            <a href="#">Services</a>
-            <a href="#">Solution Hub</a>
-            <a href="#">Insights</a>
-            <a href="#">Careers</a>
-            <a href="#">Contact Us</a>
-        </nav>
+          {/* DESKTOP NAV */}
+          <nav className="nav">
 
-        {/* Right Section */}
-        <div className="header-right">
-            {/* Hamburger */}
-                <div
-                className="hamburger"
-                onClick={() => setMenuOpen(true)}
-                >
-                <span></span>
-                <span></span>
-                <span></span>
-                </div>
+            <NavLink to="/company" className="nav-link">
+              Company
+            </NavLink>
+
+            <NavLink to="/services" className="nav-link">
+              Services
+            </NavLink>
+
+            <NavLink to="/solutions" className="nav-link">
+              Solution Hub
+            </NavLink>
+
+            <NavLink to="/insights" className="nav-link">
+              Insights
+            </NavLink>
+
+            <NavLink to="/careers" className="nav-link">
+              Careers
+            </NavLink>
+
+            <NavLink to="/contact" className="nav-link">
+              Contact Us
+            </NavLink>
+
+          </nav>
+
+          {/* RIGHT */}
+          <div className="header-right">
+
+            {/* Hamburger (Mobile) */}
+            <div
+              className="hamburger"
+              onClick={() => setMenuOpen(true)}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            {/* Desktop Buttons */}
             <button className="login-btn">Login</button>
             <button className="signup-btn">Sign Up</button>
+
+          </div>
+
         </div>
-        {/* Mobile Sidebar */}
-            <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+      </header>
 
-            <div className="menu-header">
-                <span>Menu</span>
-                <button onClick={() => setMenuOpen(false)}>✕</button>
-            </div>
-
-            <ul>
-                <li>Home</li>
-                <li>Company</li>
-                <li>Services</li>
-                <li>Solution Hub</li>
-                <li>Insights</li>
-                <li>Careers</li>
-                <li>Contact Us</li>
-            </ul>
-
-            <div className="menu-buttons">
-                <button className="login-btn">Login</button>
-                <button className="signup-btn">Sign Up</button>
-            </div>
-
-            </div>
-
-            {/* Overlay */}
-            {menuOpen && (
-            <div
-                className="menu-overlay"
-                onClick={() => setMenuOpen(false)}
-            ></div>
-            )}
-      </div>  
-
-      
-
-    </header>
+      {/* SIDEBAR */}
+      <Sidebar
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+    </>
   );
 };
 

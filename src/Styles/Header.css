@@ -60,13 +60,13 @@ body {
 }
 
 .header-left:hover .logo {
-  transform: scale(1.1) rotate(-2deg);
+  transform: scale(1.1);
 }
 
 .brand-name {
   font-family: "Sora", "Poppins", sans-serif;
 
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 600;
   letter-spacing: 0.6px;
 
@@ -112,7 +112,7 @@ body {
 
 .nav {
   display: flex;
-  gap: 32px;
+  gap: 20px;
   white-space: nowrap;
 }
 
@@ -132,6 +132,32 @@ body {
 .nav a:hover {
   transform: scale(1.14) translateY(-1px);
   opacity: 1;
+}
+
+.nav-link {
+  position: relative;
+
+  padding: 6px 8px;
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+  background: rgb(240, 240, 240);
+}
+
+.nav-link.active {
+  background: rgb(67, 67, 67);
+
+  color: #ffffff;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 2px 8px rgba(99, 102, 241, 0.25);
 }
 
 .header-right {
